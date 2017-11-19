@@ -8,6 +8,7 @@
       <answer-list
         @selectAnswerIndex="handleSelectAnswerIndex($event)"
         :answers="question.answers"
+        :question="question"
       ></answer-list>
     </div>
   </section>
@@ -24,7 +25,10 @@
     },
     methods: {
       handleSelectAnswerIndex(answerIndex) {
-        console.log(answerIndex, this.question);
+        this.$store.commit('setUserAnswerIndex', {
+          question: this.question,
+          userAnswerIndex: answerIndex
+        });
       }
     }
   }

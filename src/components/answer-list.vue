@@ -8,8 +8,10 @@
       v-for="(answer, index) in answers"
       :key="answer"
       :answer="answer"
+      :answerIndex="index"
+      :question="question"
       class="panel-block"
-      @selectAnswer="onSelectAnswer(answer, index)"
+      @selectAnswer="onSelectAnswer(index)"
     ></answer-list-element>
 
   </section>
@@ -22,10 +24,11 @@
     components: { AnswerListElement },
     name: 'AnswerList',
     props: {
-      answers: Array
+      answers: Array,
+      question: Object
     },
     methods: {
-      onSelectAnswer(selectAnswer, selectAnswerIndex) {
+      onSelectAnswer(selectAnswerIndex) {
         this.$emit('selectAnswerIndex', selectAnswerIndex);
       }
     }

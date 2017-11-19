@@ -33,6 +33,28 @@
     <question-list
       :questions="quiz.questions"
     ></question-list>
+
+    <hr/>
+
+    <section class="message is-primary" v-if="isDisplayResults">
+      <section class="message-header">
+        <p>Congratulations!</p>
+      </section>
+      <section class="message-body">
+        <p class="subtitle">
+          Score: {{ getScore() }} / {{ maxScore }}
+        </p>
+      </section>
+    </section>
+
+    <div v-else>
+      <div class="buttons">
+        <button class="button is-primary" @click="displayResults()">
+          Display results!
+        </button>
+      </div>
+    </div>
+
   </section>
 </template>
 
@@ -46,6 +68,31 @@
     },
     components: {
       QuestionList
+    },
+    computed: {
+      isDisplayResults() {
+        return this.$store.getters.isDisplayResults;
+      },
+      score() {
+        return this.$store.getters.score;
+      },
+      maxScore() {
+        return this.$store.getters.quiz.questions.length;
+      }
+    },
+    methods: {
+      displayResults() {
+        this.$store.commit('displayResults');
+      },
+      getScore() {
+        return this.$store.getters.quiz.questions.reduce((score, q) => {
+          const isCorrect = (q.correctAnswerIndex === q.userAnswerIndex);
+          if (isCorrect) {
+            score++;
+          }
+          return score;
+        }, 0);
+      }
     }
   }
 </script>
