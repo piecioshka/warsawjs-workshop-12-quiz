@@ -5,10 +5,11 @@
     <!--</h1>-->
 
     <answer-list-element
-      v-for="answer in answers"
+      v-for="(answer, index) in answers"
       :key="answer"
       :answer="answer"
       class="panel-block"
+      @selectAnswer="onSelectAnswer(answer, index)"
     ></answer-list-element>
 
   </section>
@@ -22,6 +23,11 @@
     name: 'AnswerList',
     props: {
       answers: Array
+    },
+    methods: {
+      onSelectAnswer(selectAnswer, selectAnswerIndex) {
+        this.$emit('selectAnswerIndex', selectAnswerIndex);
+      }
     }
   }
 </script>

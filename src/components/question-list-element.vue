@@ -6,6 +6,7 @@
 
     <div class="message-body">
       <answer-list
+        @selectAnswerIndex="handleSelectAnswerIndex($event)"
         :answers="question.answers"
       ></answer-list>
     </div>
@@ -20,6 +21,11 @@
     components: { AnswerList },
     props: {
       question: Object
+    },
+    methods: {
+      handleSelectAnswerIndex(answerIndex) {
+        console.log(answerIndex, this.question);
+      }
     }
   }
 </script>
