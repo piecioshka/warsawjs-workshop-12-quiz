@@ -1,6 +1,6 @@
 # warsawjs-workshop-12-quiz
 
-> A Vue.js project
+⛩️ WarsawJS Workshop #12 — Vue.js — Quiz
 
 ## Build Setup
 
